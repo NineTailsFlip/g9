@@ -65,6 +65,9 @@ android {
     lint {
         // Like every Nine app: English-only, screens built in code from string literals.
         disable += "SetTextI18n"
+        // targetSdk 34 is deliberate: the Nine suite targets exactly the Android 14 keypad phones
+        // it's tested on. Lint only flags it where a newer platform is installed (CI runners).
+        disable += "OldTargetApi"
         warningsAsErrors = true
         abortOnError = true
     }
