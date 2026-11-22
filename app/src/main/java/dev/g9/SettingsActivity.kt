@@ -1,5 +1,6 @@
 package dev.g9
 
+import io.github.ninetailsflip.update.updatesSection
 import life.furrer.nine.core.NineSurface
 import life.furrer.nine.core.settings.NineSettingsActivity
 import life.furrer.nine.core.settings.SettingsScreen
@@ -16,5 +17,6 @@ class SettingsActivity : NineSettingsActivity() {
                 off = "off (OK plays)",
             )
         }
+        updatesSection(screen, this, ::refresh)
     }
 }

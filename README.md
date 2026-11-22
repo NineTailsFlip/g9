@@ -25,6 +25,13 @@ black, a numbered `*` menu, and a hint bar at the bottom. It is a sister app of
 
 Keys are listed in the app itself: Settings → About → Key mapping.
 
+## Installing and updates
+
+Signed builds are published on [Releases](https://github.com/NineTailsFlip/g9/releases). Install the first one by hand. After that, G9 checks for a newer release once a day when its main screen opens and offers to update. Android asks you to confirm each update, and the first time it also asks you to allow G9 to install apps. You can turn the check off, or run it now, in Settings → Updates.
+
+Releases are built by GitHub Actions from a `v<versionName>` tag. See
+[RELEASING.md](https://github.com/NineTailsFlip/.github/blob/main/RELEASING.md).
+
 ## Building
 
 You need JDK 17+ and the Android SDK (platform 34, build-tools 34).

@@ -18,7 +18,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "dev.g9"
+        applicationId = "io.github.ninetailsflip.g9"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
@@ -72,6 +72,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":update"))
     implementation(project(":kit"))
     testImplementation("junit:junit:4.13.2")
 }
