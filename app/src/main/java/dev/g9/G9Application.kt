@@ -18,10 +18,9 @@ private val g9App = NineApp(
     name = "G9",
     tagline = "Gallery on 9 keys",
     settingsActivity = SettingsActivity::class.java,
-    // Placeholders until G9 has a home of its own, as TG9's.
-    websiteUrl = "https://github.com/",
-    sourceUrl = "https://github.com/",
-    trackerUrl = "https://github.com/",
+    websiteUrl = "https://github.com/NineTailsFlip/g9",
+    sourceUrl = "https://github.com/NineTailsFlip/g9",
+    trackerUrl = "https://github.com/NineTailsFlip/g9/issues",
     surfaces = listOf(
         NineSurface(
             id = "",
