@@ -1,40 +1,52 @@
 # G9 — Gallery on 9 keys
 
-A gallery for Android phones with a physical keypad/D-pad and no touchscreen. It uses the look and
-the keys of the [Nine suite](https://git.sr.ht/~timofurrer/nine) (L9, C9, P9, M9): one column on
-black, a numbered `*` menu, and a hint bar at the bottom. It is a sister app of
-[TG9](https://github.com/NineTailsFlip/tg9), Telegram on 9 keys.
+A gallery for Android phones with a keypad and no touchscreen.
 
-## What works
+[![Build](https://github.com/NineTailsFlip/g9/actions/workflows/build.yml/badge.svg)](https://github.com/NineTailsFlip/g9/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/NineTailsFlip/g9)](https://github.com/NineTailsFlip/g9/releases/latest)
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
 
-- Every photo and video, newest first under day headers. Each row shows a thumbnail, the time,
-  and the folder, size and dimensions. The list follows MediaStore live, so a photo you just took
-  shows up without leaving the screen.
-- `0` opens the folders (Camera, Screenshots, Download, TG9...), most recently added-to first,
-  then the trash.
-- Full screen: Up/Down step through the list. A photo zooms with OK and pans with the D-pad.
-  A video plays with OK and seeks 10 s with Left/Right. `#` shows the details: name, date, size,
-  folder, path. GIFs and animated WebP play.
-- `#` in a list marks items, and `*` → Mark this day marks a whole day. `*` shares them or
-  moves them to the trash.
-- Nothing is deleted outright. Items go to Android's trash, which keeps them for 30 days, and
-  Android asks for confirmation every time. From the trash you can restore them or delete them
-  for good.
-- G9 opens photos and videos that other apps hand over, and it registers as the phone's gallery
-  app.
+G9 uses the look and the keys of the [Nine suite](https://git.sr.ht/~timofurrer/nine) (L9, C9,
+P9, M9): one column on black, a numbered `*` menu and a hint bar. It is a sister app of
+[TG9](https://github.com/NineTailsFlip/tg9), Telegram on 9 keys, and part of
+[NineTailsFlip](https://github.com/NineTailsFlip).
 
-Keys are listed in the app itself: Settings → About → Key mapping.
+## Features
 
-## Installing and updates
+- Every photo and video, newest first under day headers; each row shows a thumbnail, the time,
+  the folder, size and dimensions. The list follows MediaStore live, so a photo you just took
+  appears without leaving the screen.
+- Folders (Camera, Screenshots, Download, TG9…), most recently added-to first, then the trash.
+- Full screen: photos zoom and pan; videos play and seek; GIFs and animated WebP play;
+  details (name, date, size, folder, path).
+- Mark items (or a whole day) to share them or move them to the trash.
+- Nothing is deleted outright: items go to Android's trash for 30 days, and Android asks every
+  time. Restore from the trash, or delete for good.
+- Opens photos and videos other apps hand over, and registers as the phone's gallery.
+- Updates from GitHub Releases.
 
-Signed builds are published on [Releases](https://github.com/NineTailsFlip/g9/releases). Install the first one by hand. After that, G9 checks for a newer release once a day when its main screen opens and offers to update. Android asks you to confirm each update, and the first time it also asks you to allow G9 to install apps. You can turn the check off, or run it now, in Settings → Updates.
+## Installation
 
-Releases are built by GitHub Actions from a `v<versionName>` tag. See
-[RELEASING.md](https://github.com/NineTailsFlip/.github/blob/main/RELEASING.md).
+Download the APK from [Releases](https://github.com/NineTailsFlip/g9/releases/latest) and
+install it. After that G9 checks for a new release once a day and offers it; Android asks you to
+confirm each update. Settings → Updates turns the check off or runs it now.
+
+## Usage
+
+| Key | In the list | Full screen |
+|---|---|---|
+| Up / Down | Move | Previous / next item |
+| Left / Right | Previous / next day | Video: seek 10 s; photo: pan |
+| OK | Open full screen | Photo: zoom; video: play / pause |
+| `#` | Mark the item | Details |
+| `0` | Folders and trash | — |
+| `*` | Menu: mark this day, share, trash, settings | Menu |
+
+The full key map is in the app: Settings → About → Key mapping.
 
 ## Building
 
-You need JDK 17+ and the Android SDK (platform 34, build-tools 34).
+Requirements: JDK 17+, Android SDK (platform 34, build-tools 34).
 
 ```bash
 git clone --recursive https://github.com/NineTailsFlip/g9.git
@@ -43,22 +55,30 @@ echo "sdk.dir=$HOME/Library/Android/sdk" > local.properties
 ./gradlew :app:assembleDebug
 ```
 
-The APK is `app/build/outputs/apk/debug/app-debug.apk`, about 3 MB. Tests:
+The APK (about 3 MB) is `app/build/outputs/apk/debug/app-debug.apk`. Tests:
 `./gradlew testDebugUnitTest`.
 
-## Layout
+Releases are built by GitHub Actions from a `v<versionName>` tag — see
+[RELEASING.md](https://github.com/NineTailsFlip/.github/blob/main/RELEASING.md).
 
-- `app/` — G9 itself (`dev.g9`): the list (`BrowseActivity`), folders, the full-screen viewer,
-  and sharing and the trash (`Actions`).
-- `nine-core/` — a git submodule ([nine-core](https://github.com/NineTailsFlip/nine-core)):
-  the Nine suite's `core/` and the gallery `kit/` shared with TG9. After a change there, update
-  the pointer with `git -C nine-core pull` and commit it.
+## Project structure
 
-## Requirements and limits
+| Path | What's there |
+|---|---|
+| `app/` | G9 itself (`dev.g9`): the list (`BrowseActivity`), folders, the full-screen viewer, sharing and the trash (`Actions`) |
+| `nine-core/` | Git submodule: [nine-core](https://github.com/NineTailsFlip/nine-core) — the Nine suite's `core/`, the gallery `kit/` shared with TG9, and `update/`. After a change there: `git -C nine-core pull` and commit the pointer |
 
-- Android 14+ (minSdk 34), the same as the Nine suite.
+## Requirements and limitations
+
+- Android 14+ (minSdk 34), as the Nine suite.
 - Not done yet: rotating or editing photos, setting a wallpaper, search.
+
+## Contributing
+
+Issues and pull requests are welcome; see
+[CONTRIBUTING](https://github.com/NineTailsFlip/.github/blob/main/CONTRIBUTING.md).
 
 ## License
 
-GPL-3.0-or-later (see `LICENSE`), because it includes the Nine suite's `core/`, which is GPL-3.0.
+GPL-3.0-or-later — see [LICENSE](LICENSE). It includes the Nine suite's `core/`, which is
+GPL-3.0.
